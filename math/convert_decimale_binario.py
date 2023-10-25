@@ -31,7 +31,7 @@ if input_numero == True:
 
     while quoziente > 0:
         resto = str( quoziente % 2 )
-        quoziente = int( quoziente / 2 )
+        quoziente = quoziente / 2
         numero_binario = resto + numero_binario
 
     print("Numero: " + str(input_numero) + " => binario: " +str(numero_binario)  )
