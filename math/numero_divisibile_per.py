@@ -115,7 +115,6 @@ while input_valido == False:
     msg = strMsgInputUtente if input_errori == 0 else strMsgInputUtenteErrori
     numero = input(msg + " ")
     if numero.isnumeric():
-        #print( type(numero) )
         numero = int(numero)
         if numero > 0:
             input_valido = True
@@ -180,3 +179,4 @@ else:
     print()
     print()
     print(strSalutiFinaliOk)
+    print()

@@ -1,5 +1,4 @@
 # Simula apertura e chiusura di una sbarra o cancello
-
 import time
 import libs.cancelloRuntime as cancelloRuntime
 

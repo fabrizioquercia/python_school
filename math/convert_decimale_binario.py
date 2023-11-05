@@ -20,21 +20,17 @@ Converter.bootstrap(time)
 
 # Chiedo all'utente un numero decimane maggiore di 0 da convertire in binario
 # Lo chiedo N volte finchè non inserisce un numero intero valido
-numero = ""
-print(numero)
 input_numero = Converter.inputGetNumero()
 
-if input_numero == True:
-    print(numero)
-    quoziente = numero
+if input_numero > 0:
+    quoziente = input_numero
     numero_binario = ""
-
-    while quoziente > 0:
-        resto = str( quoziente % 2 )
+    while int(quoziente) > 0:
+        resto = int( quoziente % 2 )
         quoziente = quoziente / 2
-        numero_binario = resto + numero_binario
+        numero_binario = str(resto) + numero_binario
 
-    print("Numero: " + str(input_numero) + " => binario: " +str(numero_binario)  )
+    print("Numero: %s => binario: %s"%(input_numero, numero_binario)  )
     
 
 

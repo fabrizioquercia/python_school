@@ -111,5 +111,6 @@ if input_valido:
     # Stampo la tabella del risultato
     print()
     tabellaRisultato(mathF, fattorialeFor, fattorialeWhile, fattorialeRicorsiva)
+    print()
     
     

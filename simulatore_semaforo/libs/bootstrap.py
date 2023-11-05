@@ -6,17 +6,19 @@ if os.name=="nt":
     osCls = "cls"
 else:
     osCls = "clear"
+    
+strMsg = "Attenzione: Il semaforo si accendera' fra secondi: %s..."
 
 def bootstrapSemaforo(versione):
     os.system( osCls )
     
     time.sleep(0.25)
     print()
-    print("Attenzione: Il semaforo si accendera' fra 3 secondi ...", end="\r", flush=True)
+    print(strMsg %("3"), end="\r", flush=True)
     time.sleep(1)
-    print("Attenzione: Il semaforo si accendera' fra 2 secondi ...", end="\r", flush=True)
+    print(strMsg %("2"), end="\r", flush=True)
     time.sleep(1)
-    print("Attenzione: Il semaforo si accendera' fra 1 secondo ...", end="\r", flush=True)
+    print(strMsg %("1"), end="\r", flush=True)
     time.sleep(1)
     
     os.system( osCls )
