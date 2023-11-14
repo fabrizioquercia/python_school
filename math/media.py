@@ -20,5 +20,5 @@ for i in range(len(numeri)):
     print()
 
 media = somma/2
-print(media)
+print("Media: %d" %(media))
 
