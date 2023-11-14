@@ -12,6 +12,9 @@ voti = [ 0 for i in range(numero_alunni) ]
 #print(voti)
 
 
+##########
+
+
 # faccio inserir ei voti di ogni alunno in trentesimi e salvo in un vettore
 for i in range(numero_alunni):
     voto = 100
