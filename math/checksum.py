@@ -4,10 +4,7 @@ import os, time, math, sys
 # Variabili
 default_sender = 10000101
 default_receiver = default_sender
-bit_send = ""
-bit_receive = ""
-bit_send_reverse = ""
-bit_receive_reverse = ""
+bit_send = ""; bit_receive = ""; bit_send_reverse = ""; bit_receive_reverse = ""
 
 sleep_time_bootstrap = 0.05
 sleep_time = 3 # in secondi
@@ -37,9 +34,7 @@ def loadingMessage(): # demo, pè solo una fighetteria estetica
             print(".", end="", flush=True)
         
 def pythonVersion():
-    v = sys.version
-    l = len(v)
-    r = ""
+    v = sys.version; l = len(v); r = ""
     for i in range(1, l+10): r += "-"
     print("\033[90m")
     print(r)
