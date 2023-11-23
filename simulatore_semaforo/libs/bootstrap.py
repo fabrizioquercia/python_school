@@ -32,3 +32,5 @@ def bootstrapSemaforo(versione):
     print("---------------------------------------------------")
     time.sleep(0.3)
 #### fine funzione [def bootstrapSemaforo()]
+
+
