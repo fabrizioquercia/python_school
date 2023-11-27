@@ -15,7 +15,7 @@ colonne = int( input("Quante colonne vuoi? ") )
 if righe <= 0 or righe=="": righe = righe_default
 if colonne <= 0 or colonne=="": colonne = colonne_default
 
-cls()
+#cls()
 print()
 
 for c in range(colonne):
@@ -45,7 +45,7 @@ for r in range(righe):
         print("" + str(r+1), end="! ")
     print()
 
-cls()
+#cls()
 
 
 for n in range(5, 0, -1):
