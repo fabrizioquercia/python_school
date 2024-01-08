@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Divertiti con Python e Flask!</title>
+	<style>
+		.coloreBlu {
+			width: 100px;
+			height: 25px;
+			background-color:#0000dd;
+			color:#fff;
+			cursor:pointer;
+		}
+		.coloreVerde {
+			width: 100px;
+			height: 25px;
+			background-color:#006600;
+			color:#fff;
+			cursor:pointer;
+		}
+		
+		.coloreRosso {
+			width: 100px;
+			height: 25px;
+			background-color:#DD0000;
+			color:#fff;
+			cursor:pointer;
+		}
+		
+
+	</style>
+  </head>
+  <body>
+	<h1>Divertiti con Python e Flask!</h1>
+	<p>Questo piccolo script mostra alcuni esempi fatti con Python e Flask, usando la tecnologia dei Web Services (o servizi Rest) per mostrare come funzionano le comunicazioni 
+	Client/Server.</p>
+	<br />
+	<p><strong>Casella di testo dove viene mostrato il saluto:</strong></p>
+	<input type"text" name="saluto" id="saluto" value="" size="70" style="height: 25px; border: 2px solid #ececec; color:#0000dd; padding-left: 5px;" />
+	<br /><br />
+	<button class="coloreBlu" onclick="saluto(1)">Saluto 1</button>&nbsp;
+	<button class="coloreBlu" onclick="saluto(2)">Saluto 2</button>&nbsp;
+	<button class="coloreBlu" onclick="saluto(3)">Saluto 3</button>&nbsp;
+	<button class="coloreBlu" onclick="resetta()">Svuota</button>&nbsp;
+	<br /><br />
+	<p><strong>Casella di testo dove viene mostrato il saluto con la funzione BIS:</strong><br />(una sola funzione def(...), 3 saluti con IF):</p>
+	<input type"text" name="saluto_bis" id="saluto_bis" value="" size="70" style="height: 25px; border: 2px solid #ececec; color:#006600; padding-left: 5px; " />
+	<br /><br />
+	<button class="coloreVerde" onclick="saluto_bis(1)">Saluto 1 BIS</button>&nbsp;
+	<button class="coloreVerde" onclick="saluto_bis(2)">Saluto 2 BIS</button>&nbsp;
+	<button class="coloreVerde" onclick="saluto_bis(3)">Saluto 3 BIS</button>&nbsp;
+	<button class="coloreVerde" onclick="resetta_bis()">Svuota</button>&nbsp;
+	
+	<br /><br />
+	<p><strong>Casella di testo a contenuto variabile:</strong> (media, fattoriale, potenza):</p>
+	<input type"text" name="testo" id="testo" value="" size="70" style="height: 25px; border: 2px solid #ececec; color:#dd0000; padding-left: 5px; " />
+	<br /><br />
+	<button class="coloreRosso" onclick="testo('m')">Media</button>&nbsp;
+	<button class="coloreRosso" onclick="testo('f')">Fattoriale</button>&nbsp;
+	<button class="coloreRosso" onclick="testo('p')">Potenza</button>&nbsp;
+	<button class="coloreRosso" onclick="resetta_testo()">Svuota</button>&nbsp;
+	
+	
+  </body>
+  <script type="text/javascript">
+	
+	function resetta() {
+		document.getElementById("saluto").value = "";
+	}
+	function resetta_bis() {
+		document.getElementById("saluto_bis").value = "";
+	}
+	function resetta_testo() {
+		document.getElementById("testo").value = "";
+	}
+	
+	function saluto(i) {
+		var host = "http://127.0.0.1:5000/";
+		var res = host + "saluto" + i;
+		//alert(res)
+		
+		const xhttp = new XMLHttpRequest();
+		  xhttp.onload = function() {
+			document.getElementById("saluto").value = this.responseText;
+			//alert(this.responseText);
+		  }
+		  xhttp.open("GET", res);
+		  xhttp.send(); 
+		
+	}
+	
+	function saluto_bis(i) {
+		var host = "http://127.0.0.1:5000/";
+		var res = host + "saluto" + i +"_bis";
+		//alert(res)
+		
+		const xhttp = new XMLHttpRequest();
+		  xhttp.onload = function() {
+			document.getElementById("saluto_bis").value = this.responseText;
+		  }
+		  xhttp.open("GET", res);
+		  xhttp.send(); 
+		
+	}
+	
+	function testo(t) {
+		var host = "http://127.0.0.1:5000/";
+		var res = host + "testo/" + t +"";
+		
+		const xhttp = new XMLHttpRequest();
+		  xhttp.onload = function() {
+			document.getElementById("testo").value = this.responseText;
+		  }
+		  xhttp.open("GET", res);
+		  xhttp.send(); 
+		
+	}
+  
+  </script>
+</html>
