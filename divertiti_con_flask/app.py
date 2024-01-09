@@ -48,7 +48,7 @@ def media():
     for i in lista:
         somma += i
     media = somma / len(lista)
-    stringa = "La media fra i numeri " + str(lista) + " e' " + str(media)
+    stringa = "La media fra i numeri " + str(lista) + " e' " + str(media) + " - La somma e': " + str(somma)
     return str(stringa)
 
 def fattoriale():
