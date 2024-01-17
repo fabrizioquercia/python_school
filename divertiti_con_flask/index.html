@@ -78,17 +78,17 @@
 	}
 	
 	function saluto(i) {
-		var res = httphost + "saluto" + i;
+		var res = "saluto" + i;
 		getData("saluto", res);
 	}
 	
 	function saluto_bis(i) {
-		var res = httphost + "saluto" + i +"_bis";
+		var res = "saluto" + i +"_bis";
 		getData("saluto_bis", res);
 	}
 	
 	function testo(t) {
-		var res = httphost + "testo/" + t +"";
+		var res = "testo/" + t +"";
 		getData("testo", res);
 	}
 	
@@ -97,7 +97,7 @@
 		xhttp.onload = function() {
 			document.getElementById(campo).value = this.responseText;
 		}
-		xhttp.open("GET", res);
+		xhttp.open("GET", httphost + res);
 		xhttp.send(); 
 	}
   

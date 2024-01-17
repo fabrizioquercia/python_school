@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calcolatrice HTML + JS</title>
+<style>
+    body {
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        background-color:#efefef;
+    }
+    .subTitolo {
+        color:blue;
+        text-decoration: underline;
+    }
+	h4 {
+		color:cadetblue;
+        margin-top: -12px;
+	}
+
+    .nomeApp {
+        font-size: 10px;
+    }
+
+    input[name="btnNumero"] {
+        background-color: cyan;
+        width: 55px;
+        height: 55px;
+        font-weight: bold;
+        font-size: 18px;
+        margin-top: 1px;
+        border-radius: 50px;
+        text-align: center;
+        border-color: orange;
+        border: 1px solid chocolate;
+    }
+
+    input[name="btnOperando"] {
+        background-color: orange;
+        width: 55px;
+        height: 55px;
+        font-weight: bold;
+        font-size: 18px;
+        margin-top: 1px;
+        border-radius: 50px;
+        text-align: center;
+        border-color: black;
+        border: 1px solid black;
+    }
+
+    input[name="btnBack"] {
+        background-color: darkslategrey;
+        color: white;
+        width: 55px;
+        height: 55px;
+        font-weight: bold;
+        font-size: 18px;
+        margin-top: 1px;
+        border-radius: 50px;
+        text-align: center;
+        border-color: black;
+        border: 1px solid black;
+    }
+
+    input[name="btnUguale"] {
+        background-color: green;
+        color: white;
+        width: 55px;
+        height: 55px;
+        font-weight: bold;
+        font-size: 18px;
+        margin-top: 1px;
+        border-radius: 50px;
+        text-align: center;
+        border-color: black;
+        border: 1px solid black;
+        margin-top: 10px;
+    }
+
+    input[name="btnNuovo"] {
+        background-color: lightgray;
+        width: 55px;
+        height: 55px;
+        font-weight: bold;
+        font-size: 18px;
+        margin-top: 1px;
+        border-radius: 50px;
+        text-align: center;
+        border-color: black;
+        border: 1px solid darkgray;
+        margin-top: 5px;
+    }
+    textarea#schermo {
+        font-weight: bold;
+        font-size: 32px;
+        background-color: darkslategrey;
+        color: white;
+        text-align: right;
+        resize: none;
+    }
+
+    textarea#schermoOld {
+        font-weight: bold;
+        font-size: 32px;
+        background-color: lawngreen;
+        color: blue;
+        text-align: right;
+        resize: none;
+    }
+
+    textarea#schermoOld2 {
+        font-weight: bold;
+        font-size: 32px;
+        background-color:indigo;
+        color: lightgray;
+        text-align: right;
+        resize: none;
+    }
+
+    input[type=button]:hover {
+        cursor: pointer;
+    }
+
+</style>
+
+<script type="text/javascript">
+    
+    const msgCalcolaNoTesto = "La casella delle cifre è vuota: Impossibile eseguire il calcolo.\n\nInserisci delle cifre con le quali vuoi eseguire le operazioni usando il tastierino numerico, poi premi di nuovo Calcola.";
+    const msgCalcolaNoOperando = "Non ci sono valori nella casella: Inserisci prima dei numeri, poi l'operando!";
+    const msgNoZeroIniziale = "Impossibile inserire uno 0 all'inizio:\n\nNon è possibile inserire cifre che iniziano con il numero zero ( 0 ).\nInserire solo cifre intere maggiori di zero.";
+
+    // Resetta le caselle dei numeri e dell'operatore, per un nuovo calcolo
+    function nuovoCalcolo() {
+        document.getElementById("schermo").value = "";
+        //document.getElementById("schermo").setAttribute("rows", "3");
+    }
+
+    function addNumero(numero) {
+        var oldNumero = document.getElementById("schermo").value;
+
+        // Verifico che non ci sia lo 0 all'inizio del display
+        if (numero == "0" && oldNumero == "") {
+            if (noTesto(msgNoZeroIniziale)== false);
+            return;
+        }
+
+        document.getElementById("schermo").value = oldNumero + numero
+    }
+
+    // Scrive l'operando
+    function addOperando(operando) {
+
+        if (noTesto(msgCalcolaNoOperando) == false) {
+            return;
+        }
+
+        var oldNumero = document.getElementById("schermo").value;
+        var op = "";
+        switch (operando) {
+            case "piu": op = "+"; break;
+            case "meno": op = "-"; break;
+            case "per": op = "*"; break;
+            case "diviso": op = "/"; break;
+            default:
+                op = "+";
+            break;
+        }
+        document.getElementById("schermo").value = oldNumero + "" + op + "";
+    }
+
+    function tornaIndietro() {
+        var oldNumero = document.getElementById("schermo").value;
+        var newNumero = oldNumero.substring(0, oldNumero.length - 1);
+        document.getElementById("schermo").value = newNumero;
+    }
+
+    function calcola() {
+        if (noTesto(msgCalcolaNoTesto) == false) {
+            return;
+        }
+        var val = document.getElementById("schermo").value;
+        var res = eval(val);
+        var acc = "\n\n";
+
+        console.log(val.length);
+        console.log(res);
+
+
+        if (val.length > 12) {
+            acc = "\n";
+        }
+
+        var str = "" + val + acc + " =" + res;
+        console.log("strlen=" + str.length);
+
+
+        if (str.length > 30) {
+            console.log("Troppo lungo = " + str.length);
+            acc = "\n";
+            //document.getElementById("schermo").setAttribute("rows", "4");
+            //document.getElementById("schermo").setAttribute("style", "font-size: 24px;");
+
+        }
+
+        // Controllo di esempio: Se per caso ho più di 1 decimani nel risultato, allora ne mostro solo 2
+        res = Number(res).toFixed(2);
+
+        document.getElementById("schermo").value = document.getElementById("schermo").value + acc + " =" +  res;
+    }
+
+    // Funzioni di controllo
+    function noTesto(msg) {
+        var sc = document.getElementById("schermo");
+        if ( sc.value == "" ) {
+            alert(msg);
+            return false;
+        }
+        return true;
+    }
+
+</script>
+
+</head>
+<body>
+
+    <h1>Cal<span class="subTitolo">culo</span> tutto io!</h1>
+    <h4 style="margin-top: -25px; margin-bottom: 15px;">... tu non devi fare nulla ...</h4>
+
+    <table style="width: 620px;">
+        <tr>
+            <td>
+                <textarea name="schermo" id="schermo" cols="12" rows="4" readonly="readonly"></textarea>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                
+                <!-- Tabella dei pulsantoni -->
+                <table>
+                    <tr>
+                        <td>
+                            <input type="button" id="1" name="btnNumero" value="1" onclick="addNumero(this.id)" />
+                            <input type="button" id="2" name="btnNumero" value="2" onclick="addNumero(this.id)" />
+                            <input type="button" id="3" name="btnNumero" value="3" onclick="addNumero(this.id)" />
+                            <input type="button" id="piu" name="btnOperando" value="+" onclick="addOperando(this.id)" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="button" id="4" name="btnNumero" value="4" onclick="addNumero(this.id)"/>
+                            <input type="button" id="5" name="btnNumero" value="5" onclick="addNumero(this.id)" />
+                            <input type="button" id="6" name="btnNumero" value="6" onclick="addNumero(this.id)" />
+                            <input type="button" id="meno" name="btnOperando" value="-" onclick="addOperando(this.id)" />
+                        </td>
+                    </tr>   
+                    <tr>
+                        <td>
+                            <input type="button" id="7" name="btnNumero" value="7" onclick="addNumero(this.id)" />
+                            <input type="button" id="8" name="btnNumero" value="8" onclick="addNumero(this.id)" />
+                            <input type="button" id="9" name="btnNumero" value="9" onclick="addNumero(this.id)" />
+                            <input type="button" id="per" name="btnOperando" value="x" onclick="addOperando(this.id)" />
+                        </td>
+                    </tr>    
+                    <tr>
+                        <td>
+                            <input type="button" id="back" name="btnBack" value="<<" onclick="tornaIndietro()" />
+                            <input type="button" id="0" name="btnNumero" value="0" onclick="addNumero(this.id)" style="width: 115px;" />
+                            
+                            <input type="button" id="diviso" name="btnOperando" value="/" onclick="addOperando(this.id)" />
+                        </td>
+                    </tr>   
+
+                    <tr>
+                        <td colspan="4">
+                            <input type="button" id="uguale" name="btnUguale" value="CALCOLA ( = )" onclick="calcola()"
+                            style="width: 232px; border-radius: 8px; height: 42px;" 
+                            />
+                        </td>
+                    </tr>     
+
+                    <tr>
+                        <td colspan="4">
+                            <input type="button" id="nuovo" name="btnNuovo" value="Resetta" onclick="nuovoCalcolo()" 
+                            style="width: 232px; border-radius: 8px; height: 42px;" 
+                            />
+                        </td>
+                    </tr>     
+                </table>
+
+
+            </td>
+        </tr>
+
+        <tr>
+            <td class="nomeApp"><br>
+                &copy; 3SIA Calculator - Calcolatrice Digitale <br >Sviluppata dagli allievi dell'ITT 3SIA
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>
