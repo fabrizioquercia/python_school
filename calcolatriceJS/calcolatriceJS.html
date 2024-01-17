@@ -179,6 +179,7 @@
     }
 
     function tornaIndietro() {
+        console.log("BACK!");
         var oldNumero = document.getElementById("schermo").value;
         var newNumero = oldNumero.substring(0, oldNumero.length - 1);
         document.getElementById("schermo").value = newNumero;
@@ -289,7 +290,7 @@
                         </td>
                     </tr>     
 
-                    <!--
+                    
                     <tr>
                         <td colspan="4">
                             <input type="button" id="nuovo" name="btnNuovo" value="Resetta" onclick="nuovoCalcolo()" 
@@ -297,9 +298,9 @@
                             />
                         </td>
                     </tr> 
-                    -->
                     
                     
+                    <!--
                     <tr>
                         <td colspan="4">
                             <input type="button" id="nuovo" name="btnNuovo" value="Resetta" onclick="resettaCalcolatrice()" 
@@ -307,6 +308,7 @@
                             />
                         </td>
                     </tr> 
+                    -->
 
 
                 </table>
