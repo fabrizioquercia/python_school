@@ -94,7 +94,8 @@
         font-weight: bold;
         font-size: 32px;
         background-color: darkslategrey;
-        color: white;
+        /*color: white;*/
+        color: chartreuse;
         text-align: right;
         resize: none;
     }
@@ -128,6 +129,15 @@
     const msgCalcolaNoTesto = "La casella delle cifre è vuota: Impossibile eseguire il calcolo.\n\nInserisci delle cifre con le quali vuoi eseguire le operazioni usando il tastierino numerico, poi premi di nuovo Calcola.";
     const msgCalcolaNoOperando = "Non ci sono valori nella casella: Inserisci prima dei numeri, poi l'operando!";
     const msgNoZeroIniziale = "Impossibile inserire uno 0 all'inizio:\n\nNon è possibile inserire cifre che iniziano con il numero zero ( 0 ).\nInserire solo cifre intere maggiori di zero.";
+
+
+    function resettaCalcolatrice() {
+        var str = document.getElementById("schermo").value;
+        console.log("strLen: " + str.length);
+        if (str.length > 0) {
+            setInterval(tornaIndietro, 25);
+        }
+    }
 
     // Resetta le caselle dei numeri e dell'operatore, per un nuovo calcolo
     function nuovoCalcolo() {
@@ -279,13 +289,26 @@
                         </td>
                     </tr>     
 
+                    <!--
                     <tr>
                         <td colspan="4">
                             <input type="button" id="nuovo" name="btnNuovo" value="Resetta" onclick="nuovoCalcolo()" 
                             style="width: 232px; border-radius: 8px; height: 42px;" 
                             />
                         </td>
-                    </tr>     
+                    </tr> 
+                    -->
+                    
+                    
+                    <tr>
+                        <td colspan="4">
+                            <input type="button" id="nuovo" name="btnNuovo" value="Resetta" onclick="resettaCalcolatrice()" 
+                            style="width: 232px; border-radius: 8px; height: 42px;" 
+                            />
+                        </td>
+                    </tr> 
+
+
                 </table>
 
 
