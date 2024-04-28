@@ -39,14 +39,14 @@ def libro(id):
     html = lista_libri(id)
     return menu + " "+ html
 
-
 @app.route("/saluto<i>_bis")
 def saluto_bis(i):
+    menu = menu_navigazione()
     saluto = ""
     if i== "1": saluto = "Ciao abbelli! Questo è il saluto 1_BIS!"
     if i== "2": saluto = "Il saluto 2_BIS e' qui e dice: AJOO!"
     if i== "3": saluto = "Saluto 3_BIS e' meglio di me e di te!"
-    return saluto
+    return  menu + " "+  saluto
 
 @app.route("/testo/<t>")
 def testo(t):
@@ -87,7 +87,10 @@ def potenza():
 
 
 def menu_navigazione():
-    html = "<a href='/saluto1'>Saluto 1</a>&nbsp;-&nbsp;<a href='/saluto2'>Saluto 2</a>&nbsp;-&nbsp;<a href='/saluto3'>Saluto 3</a><br />-&nbsp;<a href='/libri'>Lista Libri</a><br /><br />"
+    html = "<strong>Saluti standard:</strong><br /><a href='/saluto1'>Saluto 1</a>&nbsp;-&nbsp;<a href='/saluto2'>Saluto 2</a>&nbsp;-&nbsp;<a href='/saluto3'>Saluto 3</a><br />"
+    html += "<br /><strong>Saluti BIS:</strong><br /><a href='/saluto1_bis'>Saluto 1 BIS</a>&nbsp;-&nbsp;<a href='/saluto2_bis'>Saluto 2 BIS</a>&nbsp;-&nbsp;<a href='/saluto3_bis'>Saluto 3 BIS</a><br /><br />"
+    html += "<strong>Funzioni:</strong> &nbsp;<br /><a href='/libri'>Lista Libri</a><br /><br />"
+
     return html
 
 def lista_libri(id=0):
@@ -108,7 +111,12 @@ def lista_libri(id=0):
     html += "<tr><th>Titolo</th><th>Autore</th><th>Anno</th><th>Trama</th></tr>"
     for libro in lista:
         html += "<tr>"
-        html += "<td><a href='/libri/" + str(libro[0]) + "'>" + libro[1]  + "</a></td>"
+        
+        if int(id) > 0:
+            html += "<td>" + libro[1]  + "</td>"
+        else:
+            html += "<td><a href='/libri/" + str(libro[0]) + "'>" + libro[1]  + "</a></td>"
+
         html += "<td>" + libro[2]  + "</td>"
         html += "<td>" + libro[3]  + "</td>"
         html += "<td>" + libro[4]  + "</td>"
