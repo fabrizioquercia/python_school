@@ -1,5 +1,7 @@
 from flask import Flask
 from flask_cors import CORS
+import functions as FN
+
 
 app = Flask(__name__)
 CORS(app)
@@ -7,25 +9,40 @@ CORS(app)
 
 @app.route("/")
 def hello_world():
-    return "Hello, World!"
+    menu = menu_navigazione()
+    return menu + " "+ "Hello, World!"
 
 @app.route("/saluto1")
 def saluto1():
-    return "Ciao abbelli! Questo è il saluto 1!"
-
+    menu = menu_navigazione()
+    return menu + " "+ "Ciao abbelli! Questo è il saluto 1!"
 
 @app.route("/saluto2")
 def saluto2():
-    return "Il saluto 2 e' qui e dice: AJOO!"
+    menu = menu_navigazione()
+    return menu + " "+ "Il saluto 2 e' qui e dice: AJOO!"
 
 @app.route("/saluto3")
 def saluto3():
-    return "Saluto 3 e' meglio di me e di te!"
+    menu = menu_navigazione()
+    return menu + " "+ "Saluto 3 e' meglio di me e di te!"
+
+@app.route("/libri")
+def libri():
+    menu = menu_navigazione()
+    html = lista_libri()
+    return menu + " "+ html
+
+@app.route("/libri/<id>")
+def libro(id):
+    menu = menu_navigazione()
+    html = lista_libri(id)
+    return menu + " "+ html
+
 
 @app.route("/saluto<i>_bis")
 def saluto_bis(i):
     saluto = ""
-    print(i)
     if i== "1": saluto = "Ciao abbelli! Questo è il saluto 1_BIS!"
     if i== "2": saluto = "Il saluto 2_BIS e' qui e dice: AJOO!"
     if i== "3": saluto = "Saluto 3_BIS e' meglio di me e di te!"
@@ -34,12 +51,13 @@ def saluto_bis(i):
 @app.route("/testo/<t>")
 def testo(t):
     testo =""
-    if t == "m": testo = media()
-    if t == "f": testo = fattoriale()
-    if t == "p": testo = potenza()
+    if t == "m": testo = FN.media()
+    if t == "f": testo = FN.fattoriale()
+    if t == "p": testo = FN.potenza()
     return testo
-    
-    
+
+
+'''
 #funzioni interne per def testo()
 def media():
     lista = [39, 22, 12,3,5]
@@ -62,7 +80,38 @@ def fattoriale():
 def potenza():
     numero = 147
     potenza = numero **2
-    stringa = "Il numero " + str(numero) + " eevato a potenza e' " + str(potenza)
+    stringa = "Il numero " + str(numero) + " elevato a potenza e' " + str(potenza)
     return stringa
-    
-    
+'''
+
+
+
+def menu_navigazione():
+    html = "<a href='/saluto1'>Saluto 1</a>&nbsp;-&nbsp;<a href='/saluto2'>Saluto 2</a>&nbsp;-&nbsp;<a href='/saluto3'>Saluto 3</a><br />-&nbsp;<a href='/libri'>Lista Libri</a><br /><br />"
+    return html
+
+def lista_libri(id=0):
+    lista = [
+        ["1","Libro1", "Autore 1", "2003", "Trama"],
+        ["2","Libro 2", "Autore 2", "2025", "Qui la trama..."],
+        ["3","Libro 3", "Autore 3", "1977", "E' vecchio sto libro, è del 77...."]
+    ]
+    listaid =[]
+    if (int(id) > 0 or str(id) != ""):
+        for libroid in lista:
+            if int(libroid[0]) == int(id):
+                listaid.append(libroid)
+                lista = listaid
+                break
+
+    html= "<table border=1>"
+    html += "<tr><th>Titolo</th><th>Autore</th><th>Anno</th><th>Trama</th></tr>"
+    for libro in lista:
+        html += "<tr>"
+        html += "<td><a href='/libri/" + str(libro[0]) + "'>" + libro[1]  + "</a></td>"
+        html += "<td>" + libro[2]  + "</td>"
+        html += "<td>" + libro[3]  + "</td>"
+        html += "<td>" + libro[4]  + "</td>"
+        html += "</tr>"
+    html += "</table>"
+    return html

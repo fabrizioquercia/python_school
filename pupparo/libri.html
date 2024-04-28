@@ -1,0 +1,117 @@
+
+<html>
+    <head>
+        <style>table,th,td{border: 2px solid black;
+            border-collapse: collapse;
+        padding: 10px;} 
+            </style>
+    </head>
+    <body>
+        
+            <elemento onload="trova"></elemento>
+        
+		<button onclick="popololistalibri()"> Vedi Tutti i libri </button>
+		<button onclick="popololistalibrianno()"> cerca per anno </button>
+        <input type="text" id="anno">
+		
+        <button onclick="popololistalibriautore()"> cerca per autore </button>&nbsp;<input type="text" id="autore">
+		
+        <button onclick="">cerca per titolo</button>
+          
+        <!--</form>
+        <elemento onload="trova"></elemento>
+        <button onclick=""> cerca per anno </button>
+        <button onclick="">cerca per autore</button>
+        <button onclick="">cerca per titolo</button>-->
+        
+
+        <center><h1>libreria online</h1>
+        <img src="c:\Users\Operatore\scuola\progetto libreria\download (1).jpg">
+        <img src="c:\Users\Operatore\scuola\progetto libreria\download.jpg">
+        <img src="c:\Users\Operatore\scuola\progetto libreria\images.jpg">
+        </center>
+        <center style="background-color: red;"><h1>ALLERT :</h1>
+            <h1>SOLO ALCUNI LIBRI SONO VISIBILI !!!!!!</h1>
+        </center>
+        <center><span style="background-color: blue;"><h1>lista libri</h1></span></center>
+        <table id="libri" style="border: 1px solid;">
+            <tr align="left">
+                <th width=auto>id</th>
+                <th width=auto>titolo</th>
+                <th width="25%">autore</th>
+                <th width="10%">anno</th>
+                <th width="20%">quantità</th>
+                <th width= "10%">prezzo</th>
+            </tr>
+        </table>
+    </body>
+    <script type="text/javascript">
+        async function popololistalibri(){
+			puliscitabella()
+			tabellaIntestazioni()
+            const response = await fetch("http://127.0.0.1:5000/");
+            const libri = await response.json();
+            let td = document.getElementById("libri");
+            for ( libro of libri){
+                var riga = document.createElement("tr")
+                for (let x = 0 ; x < libro.length; x++){
+                    var colonna = document.createElement("td");
+                    colonna.innerText=libro[x];
+                    riga.appendChild(colonna);
+                }
+                td.appendChild(riga);
+            }
+			document.getElementById("anno").value= "";
+        }
+        async function popololistalibrianno(){
+			puliscitabella()
+			tabellaIntestazioni()
+            let anno= document.getElementById("anno").value;
+            const response = await fetch("http://127.0.0.1:5000/anno/"+anno);
+            const libri = await response.json();
+            let td = document.getElementById("libri");
+            for ( libro of libri){
+                var riga = document.createElement("tr")
+                for (let x = 0 ; x < libro.length; x++){
+                    var colonna = document.createElement("td");
+                    colonna.innerText=libro[x];
+                    riga.appendChild(colonna);
+                }
+                td.appendChild(riga);
+            }
+        }
+		
+		// Per autore
+		async function popololistalibriautore(){
+			puliscitabella()
+			tabellaIntestazioni()
+            let autore= document.getElementById("autore").value;
+            const response = await fetch("http://127.0.0.1:5000/autore/"+autore);
+            const libri = await response.json();
+            let td = document.getElementById("libri");
+            for ( libro of libri){
+                var riga = document.createElement("tr")
+                for (let x = 0 ; x < libro.length; x++){
+                    var colonna = document.createElement("td");
+                    colonna.innerText=libro[x];
+                    riga.appendChild(colonna);
+                }
+                td.appendChild(riga);
+            }
+        }
+
+        popololistalibri();
+		
+		
+		function puliscitabella() {
+			const tableEl = document.getElementById('libri').getElementsByTagName('tbody')[0];
+			tableEl.innerHTML = "";
+		}
+		
+		function tabellaIntestazioni() {
+			var html = "<tr align=\"left\"><th width=auto>id</th><th width=auto>titolo</th><th width=\"25%\">autore</th><th width=\"10%\">anno</th><th width=\"20%\">quantità</th><th width= \"10%\">prezzo</th></tr>";
+			document.getElementById('libri').innerHTML = html;
+		}
+        
+    </script>
+</html>
