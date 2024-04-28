@@ -95,9 +95,9 @@ def menu_navigazione():
 
 def lista_libri(id=0):
     lista = [
-        ["1","Libro1", "Autore 1", "2003", "Trama"],
-        ["2","Libro 2", "Autore 2", "2025", "Qui la trama..."],
-        ["3","Libro 3", "Autore 3", "1977", "E' vecchio sto libro, è del 77...."]
+        ["1","Il vecchio e il mare", "Ernest Hemingway", "1952", "Un uomo può essere distrutto, ma non sconfitto."],
+        ["2","Ventimila leghe sotto i mari", "Jules Verne", "1873", "L'anno 1866 fu caratterizzato da uno strano ..."],
+        ["3","Fallout - Senza futuro", "Vault Tec", "2011", "Siamo fottuti! Così inizia l'autore nel libro..."]
     ]
     listaid =[]
     if (int(id) > 0 or str(id) != ""):
