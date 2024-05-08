@@ -108,7 +108,7 @@ def lista_libri(id=0):
                 break
 
     html= "<table border=1>"
-    html += "<tr><th>Titolo</th><th>Autore</th><th>Anno</th><th>Trama</th></tr>"
+    html += "<tr><th>Titolo</th><th>Autore</th><th>Anno</th><th>Trama</th><th>Azioni</th></tr>"
     for libro in lista:
         html += "<tr>"
         
@@ -120,6 +120,11 @@ def lista_libri(id=0):
         html += "<td>" + libro[2]  + "</td>"
         html += "<td>" + libro[3]  + "</td>"
         html += "<td>" + libro[4]  + "</td>"
+
+        # colonna elimina
+        html += "<td>Elimina</td>"
+        html += "<td><button onclick='eliminalibro(25)'>Elimina</button></td>"(" + libro[idendit] + ")
+
         html += "</tr>"
-    html += "</table>"
+        html += "</table>"
     return html
