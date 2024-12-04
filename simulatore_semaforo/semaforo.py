@@ -1,5 +1,42 @@
+import os
 import time
 
+
+##### bootstrap #####
+osCls = ""
+if os.name=="nt":
+    osCls = "cls"
+else:
+    osCls = "clear"
+    
+strMsg = "Attenzione: Il semaforo si accendera' fra secondi... %s"
+
+def bootstrapSemaforo(versione):
+    os.system( osCls )
+    
+    time.sleep(0.25)
+    print()
+    print(strMsg %("3"), end="\r", flush=True)
+    time.sleep(1)
+    print(strMsg %("2"), end="\r", flush=True)
+    time.sleep(1)
+    print(strMsg %("1"), end="\r", flush=True)
+    time.sleep(1)
+    
+    os.system( osCls )
+    print()
+    
+    time.sleep(0.1)
+    print("---------------------------------------------------")
+    time.sleep(0.1)
+    print("#####   \33[45m SIMULATORE SEMAFORO (versione " + str(versione) + ") \033[0m   ##### ")
+    time.sleep(0.1)
+    print("---------------------------------------------------")
+    time.sleep(0.3)
+#### fine funzione [def bootstrapSemaforo()]
+
+
+##### RUNTIME #####
 # variabili di durata e colori di output semaforo V-G-R
 statoSemaforo = [0, 1, 2] ## verde,giallo,rosso => es: v=0, g=1, r=2
 durataSemaforo = [3, 2, 5]  ## verde,giallo,rosso => es: v=3secondi, g=2secondi, r=5secondi
@@ -36,6 +73,7 @@ def lampeggiaMezzanotte():
     print("")
     print("[ 00.05.30 ] == STAND-BY MODE: OFF (Semaforo operativo fino alla prossima mezzanotte)")
     print("")
+    
 # fine def lampeggiaMezzanotte()
     
 
@@ -82,4 +120,34 @@ def lampeggia(mainCounter, mezzanotteDopoCicli):
             contatore += 1
 
     #print()
+    
 #### fine funzione [def lampeggia()]
+
+
+
+
+
+
+
+# variabili di configurazione e conteggio di sistema
+mezzanotteDopoCicli = 3
+mainCounter = 0
+
+##### MESSAGGE DI ATTESA #####
+bootstrapSemaforo(3)
+
+##### AVVIA LA PROCEDURA #####
+print()
+while True:
+    
+    if mainCounter == mezzanotteDopoCicli:
+        mainCounter = 0
+        lampeggiaMezzanotte()
+    else:
+        #print()
+        lampeggia(mainCounter, mezzanotteDopoCicli)
+        mainCounter = mainCounter+1
+
+# end while True
+    
+##### FINE PROCEDURA #####
