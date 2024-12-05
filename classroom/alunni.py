@@ -1,5 +1,5 @@
 import os
-from classroom.classes.pyClassAlunno import Alunno
+from classes.pyClassAlunno import Alunno
 
 while True:
     Al = Alunno()
