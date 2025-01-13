@@ -61,7 +61,7 @@ def lampeggia(mainCounter, mezzanotteDopoCicli):
         
         # stampo il colore corrente
         if mainCounter == (mezzanotteDopoCicli-1) and s_StatoCodice == "R":
-            print(" " + statoColore[i] + " " + statoCodice[i] + " " + resetColore + " (E' quasi mezzanotte: Entro on modalità STAND-BY fra " + str(durataSemaforo[i]) + " secondi)", end="\r", flush=True )
+            print(" " + statoColore[i] + " " + statoCodice[i] + " " + resetColore + " (E' quasi mezzanotte: Entro in modalità STAND-BY fra " + str(durataSemaforo[i]) + " secondi)", end="\r", flush=True )
         else:
             print(" " + statoColore[i] + " " + statoCodice[i] + " " + resetColore + " (diventa " + s_ProssimoStato + " fra " + str(durataSemaforo[i]) + " secondi)", end="\r", flush=True )
         
