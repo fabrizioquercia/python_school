@@ -1,4 +1,7 @@
 #magazzino
+import time
+
+
 class Prodotto():
 
     inventario = {"Prodotto 1 (Pizza)" : 0, 
@@ -38,6 +41,14 @@ class Prodotto():
                 print( str(n) + ")", prodotto, ", qt=", self.inventario[prodotto])
 
     def BootStrap():
+        print()
+        time.sleep(0.1)
+        print("---------------------------------------------------")
+        time.sleep(0.1)
+        print("#####   \33[45m MAGAZZINETTO MIO DEI PRODOTTI MIEI \033[0m  ##### ")
+        time.sleep(0.1)
+        print("---------------------------------------------------")
+        time.sleep(0.3)
         print()
         print("Operazioni su [Prodotto]:" )
         print("--------------------------------")
