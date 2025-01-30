@@ -1,4 +1,3 @@
-#magazzino
 import time
 
 
