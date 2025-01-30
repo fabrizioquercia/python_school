@@ -16,13 +16,12 @@ class Biblioteca():
 
     def aggiungi(self, titolo):
         esiste = self.verifica_esiste(titolo)
-        if esiste == True:
+        if esiste == False:
             self.libri.append(titolo)
 
     def verifica_esiste(self, titolo):
-        for l in self.libri:
-            if l == titolo: 
-                return True
+        if titolo in self.libri:
+            return True
         return False
 
     def verifica_disponibile(self, titolo):
@@ -34,14 +33,33 @@ class Biblioteca():
             else:
                 t = t +" NON esiste!"
         return t
+    
+def bootstrap():
+    versione = 1.0
+    print("---------------------------------------------------")
+    print("#####   \33[45m GESTIONE BIBLIOTECA (versione " + str(versione) + ") \033[0m  ##### ")
+    print("---------------------------------------------------")
+
 
 
 os.system("cls")
+bootstrap()
 
-while True:
 
-    ls = ["Errore di sistema", "Cocoon", "Asimov"]
-    #lista
-    B = Biblioteca(ls)
+ls = ["Errore di sistema", "Cocoon", "Asimov"]
+#lista
+B = Biblioteca(ls)
+B.lista()
+print()
+libro = str( input("Aggiungi libro: ") )
+esiste = False
+if B.verifica_esiste(libro) == False:
+    B.aggiungi(libro)
     B.lista()
+else:
+    print("esiste")
+
+print()
+B.lista()
+
 
