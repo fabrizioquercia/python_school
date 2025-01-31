@@ -1,4 +1,6 @@
-#magazzino
+import time
+
+
 import os
 
 class Prodotto():
