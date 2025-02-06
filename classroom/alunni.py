@@ -1,6 +1,8 @@
 import os
 from classes.pyClassAlunno import Alunno
 
+os.system("cls" if os.name=="nt" else "clear")
+
 while True:
     Al = Alunno()
     Al.BootStrap()
