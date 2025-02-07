@@ -1,5 +1,4 @@
-import os
-import Prodotto as  from magazzino
+from magazzino import  Prodotto
 
 while True:
     P = Prodotto
@@ -9,7 +8,7 @@ while True:
     if input_command_number > 0:
         match input_command_number:
             case 0: exit(0)
-            #case 1: Al.askCreaAlunno()
+            case 1: P.lista_prodotti()
             
             case _: exit()
 

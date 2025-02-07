@@ -1,6 +1,10 @@
 #eq 
 from math import sqrt
 
+'''
+Vertice	V = (−(Δ)/(4a),−(b)/(2a))
+Fuoco	F = ((1−Δ)/(4a),−(b)/(2a))
+'''
 
 class Equazione():
     def __init__(self, a, b, c):
@@ -27,6 +31,7 @@ class Equazione():
     def get_delta(self):
         return self.__calcola_delta()
 
+    '''Fuoco F = ((1−Δ)/(4a),−(b)/(2a))'''
     def get_fuoco(self):
         #-b/2a, * 1-delta/a
         clc1 = (-self.b/(a*a))
@@ -44,11 +49,17 @@ class Equazione():
         exit
         return None
 
+# AVVIO PROGRAMMA #
+if __name__ == "__main__":
+
+    a = int(input("Inserisci il coefficente A: "))
+    b = int(input("Inserisci il coefficente B: "))
+    c = int(input("Inserisci il coefficente C: "))
+    if a == None: a = 0
+    if b == None: b = 0
+    if c == None: b = 0
 
 
-a = int(input("Inserisci il coefficente A: "))
-b = int(input("Inserisci il coefficente B: "))
-c = int(input("Inserisci il coefficente C: "))
 
 E2 = Equazione(a,b,c)
 
