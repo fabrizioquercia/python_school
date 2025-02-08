@@ -1,6 +1,9 @@
 import os
 from classes.pyClassAlunno import Alunno
 
+#Pulisco lo schermo
+os.system("cls" if os.name=="nt" else "clear" )
+
 while True:
     Al = Alunno()
     Al.BootStrap()
@@ -8,11 +11,9 @@ while True:
     print()
     if input_command_number > 0:
         match input_command_number:
-            case 0: exit(0)
             case 1: Al.askCreaAlunno()
             case 2: Al.askCreaAlunni()
             case 3: Al.askElencoAlunni()
-            case _: exit()
-
-
-
+            case 4: Al.show_logs()
+    else:
+        exit(0)
