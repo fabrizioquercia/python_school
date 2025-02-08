@@ -21,5 +21,5 @@ while True:
         mainCounter = mainCounter+1
 
 # end while True
-    
+
 ##### FINE PROCEDURA #####
