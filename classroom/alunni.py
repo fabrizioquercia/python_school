@@ -1,7 +1,6 @@
 import os
 from classes.pyClassAlunno import Alunno
 
-#Pulisco lo schermo
 os.system("cls" if os.name=="nt" else "clear" )
 
 while True:
