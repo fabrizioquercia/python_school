@@ -1,4 +1,5 @@
 from ContoBancario import *
+
 ### INIZIO MAIN ###
 def main():
     codice_conto = input("Inserisci il tuo codice conto: ")
