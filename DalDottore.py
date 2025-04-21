@@ -58,6 +58,11 @@ class ProntoSoccorso:
         self.lista.sort(key=lambda p: (p.codice, p.orario))
         print(f"Inserito il paziente {paziente.nome} con codice {get_codice_colore(paziente.codice)}: {paziente.orario}")
 
+    def chiama_paziente(self):
+        self.lista.sort(key=lambda p: (p.codice, p.orario))
+        print("CHIAMATA PER IL SIGNOR: ",self.lista[0].nome, "CODICE", self.lista[0].codice)
+        self.lista.pop(0)
+
     def stampa_lista_attesa(self):
         i = 1
         print("\nPAZIENTI IN ATTESA:")
@@ -134,5 +139,6 @@ if __name__ == "__main__":
 
 
 
-
-
+    PS.chiama_paziente()
+    time.sleep(sleeptime)
+    PS.stampa_lista_attesa()
