@@ -84,13 +84,10 @@ class ProntoSoccorso:
         print()
         
 
-def pulisci_schermo():
-    os.system("cls" if os.name=="nt" else "clear" )
-
 # ESECUZIONE PROGRAMMA
 if __name__ == "__main__":
     sleeptime = 2
-    pulisci_schermo()
+    os.system("cls" if os.name=="nt" else "clear" )
 
     # Creo qualche paziente iniziale di esempio
     pz1 = Paziente("Mario Rossi", "bianco")
@@ -103,7 +100,7 @@ if __name__ == "__main__":
     pz8 = Paziente("Fedez", "verde")
     pz9 = Paziente("Elodie", "rosso")
 
-    pulisci_schermo()
+    os.system("cls" if os.name=="nt" else "clear" )
 
 
     PS = ProntoSoccorso()
@@ -129,8 +126,9 @@ if __name__ == "__main__":
 
     
     time.sleep(sleeptime)
-    pulisci_schermo()
+
     PS.aggiungi_paziente(pz8)
+    PS.stampa_lista_attesa()
 
     time.sleep(sleeptime)
     PS.aggiungi_paziente(pz9)
@@ -142,3 +140,55 @@ if __name__ == "__main__":
     PS.chiama_paziente()
     time.sleep(sleeptime)
     PS.stampa_lista_attesa()
+
+    PS.chiama_paziente()
+    time.sleep(sleeptime)
+    PS.stampa_lista_attesa()
+
+    pz10 = Paziente("Michael Jackson", "giallo")
+    pz11 = Paziente("Madonna", "verde")
+    pz12 = Paziente("Gerri Scotti", "verde")
+    pz13 = Paziente("Paolo Bonolis", "verde")
+
+    pz14 = Paziente("Luca Laurenti", "rosso")
+    pz15 = Paziente("Maria De Filippi", "rosso")
+    pz16 = Paziente("Morgan", "giallo")
+
+    PS.aggiungi_paziente(pz10)
+    PS.stampa_lista_attesa()
+    time.sleep(sleeptime)
+
+    PS.aggiungi_paziente(pz11)
+    PS.stampa_lista_attesa()
+    time.sleep(sleeptime)
+    PS.aggiungi_paziente(pz12)
+    PS.stampa_lista_attesa()
+    time.sleep(sleeptime)
+    PS.stampa_lista_attesa()
+
+    # chiama
+    PS.chiama_paziente()
+    PS.stampa_lista_attesa()
+    time.sleep(sleeptime)
+    PS.chiama_paziente()
+    PS.stampa_lista_attesa()
+    time.sleep(sleeptime)
+
+    #aggiungi...
+    PS.aggiungi_paziente(pz13)
+    time.sleep(sleeptime)
+
+    PS.aggiungi_paziente(pz14)
+    time.sleep(sleeptime)
+    PS.aggiungi_paziente(pz15)
+    time.sleep(sleeptime)
+    PS.aggiungi_paziente(pz16)
+    time.sleep(sleeptime)
+
+    PS.chiama_paziente()
+
+    pz17 = Paziente("Vasco Rossi", "rosso")
+    time.sleep(sleeptime)
+    PS.stampa_lista_attesa()
+
+
