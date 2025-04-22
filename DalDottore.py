@@ -1,27 +1,14 @@
 import datetime, os, time
 
 ###### FUNZIONI UTLLI
-
-def BootStrap():
-    print()
-    print(":: BENVENUTO AL PRONTO SOCCORSO ::")
-    print("----------------------------------")
-    print()
-    print(" 1 - Inserisci un nuovo Paziente in ingresso")
-    print(" 2 - Chiama Paziente")
-    print(" 3 - Stampa lista di attesa")
-    print(" 0 - --- Esci dal programma ---")
-    print("----------------------------------")
-    print()
 # funzione che ottiene l'oario e lo ritorna (fatta stand-alone)
 def get_orario():
     orario = datetime.datetime.now()
-    ora=orario.strftime("%H:%M")
+    ora=orario.strftime("%H:%M:%S")
     data=orario.strftime("%D")
     return (data + " " + ora)
-
 # funzione che ottiene il numero di priorità (1,2,3,4) in base al ccolore
-# 1 = ROSSO, 2 = GIALLO, 3 = VERDE, 4 = BIANCO
+# se codice_colore=ROSSO torna 1, GIALLO torna 2, VERDE torna 3, BIANCO torna 4 
 def get_codice_priorita(codice_colore):
     codice = 0
     codice_colore = str(codice_colore).upper()
@@ -31,7 +18,7 @@ def get_codice_priorita(codice_colore):
         case "VERDE":   codice = 3
         case "BIANCO":  codice = 4
     return codice
-
+# è l'opposto di quella sopra: se codice_colore=1 torna ROSSO, 2 = GIALLO, 3=VERDE, 4=BIANCO
 def get_codice_colore(codice_colore):
     codice = 0
     match codice_colore:
@@ -40,6 +27,7 @@ def get_codice_colore(codice_colore):
         case 3:  codice = "VERDE"
         case 4:  codice = "BIANCO"
     return codice
+
 
 # CLASSE DEL PAZIENTE (Il nodo)
 class Paziente:
@@ -54,6 +42,7 @@ class ProntoSoccorso:
         self.lista = []
 
     def aggiungi_paziente(self, paziente):
+        paziente.orario = get_orario()
         self.lista.append(paziente)
         self.lista.sort(key=lambda p: (p.codice, p.orario))
         print(f"Inserito il paziente {paziente.nome} con codice {get_codice_colore(paziente.codice)}: {paziente.orario}")
@@ -65,23 +54,20 @@ class ProntoSoccorso:
         self.lista.pop(0)
 
     def stampa_lista_attesa(self):
-        i = 1
+        i = 0
         print("\nPAZIENTI IN ATTESA:")
-        print()
-
         for paziente in self.lista:
             cod = get_codice_colore(paziente.codice)
-            s = ""
-            c = "\033[7m"
+            c = "7"
+            i += 1
             match cod:
-                case "ROSSO": c = "\033[41m"
-                case "GIALLO": c = "\033[43m"
-                case "VERDE": c = "\033[42m"
-                case "BIANCO": c = "\033[7m"
-            str = f"{c} {i} \033[0m {paziente.nome} - entrato il {paziente.orario}"
+                case "ROSSO": c = "41"
+                case "GIALLO": c = "43"
+                case "VERDE": c = "42"
+                case "BIANCO": c = "7"
+            str = f"\033[{c}m {i} \033[0m {paziente.nome} - entrato il {paziente.orario}"
             print(str)
-            i = i+1
-        
+            
         print()
         
 
