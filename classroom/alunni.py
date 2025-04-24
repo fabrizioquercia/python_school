@@ -12,7 +12,7 @@ while True:
         match input_command_number:
             case 1: Al.askCreaAlunno()
             case 2: Al.askCreaAlunni()
-            case 3: Al.askElencoAlunni()
+case 3: Al.askElencoAlunni()
             case 4: Al.show_logs()
     else:
         exit(0)
