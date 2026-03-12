@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<title>Page Title</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+<script src='index.js'></script>
+</head>
+<body onload="saluta()">
+    <p id="p_saluto"></p>
+
+    <button onclick="saluta2()">Saluta 2</button>
+
+    <button onclick="ricarica()">Ricarica</button>
+    <p>Cambia colore</p>
+    <button onclick="coloraSfondo(1)"
+        style="background-color: #ececec;"
+    >Colore 1: Grigio</button>
+    <button onclick="coloraSfondo(2)"
+        style="background-color: #55ff55;"
+    >Colore 2: Verde</button>
+    <button onclick="coloraSfondo(3)"
+        style="background-color: #dd4455;"
+    >Colore 3: Viola</button>
+    <button onclick="coloraSfondo(0)"
+        style="background-color: aliceblue; color: blue;"
+    >Resetta Colore</button>
+
+    <p>inserisci un numero da 1 a 20</p>
+    <input type="text" id="numero" placeholder="Metti il numero" />
+    <button type="button" onclick="numb()">Verifica</button>
+    
+    
+    <button type="button" onclick="giochino()">Esegui giochino</button>
+    <p id="esempio"></p>
+
+</body>
+</html>

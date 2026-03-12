@@ -16,6 +16,9 @@ class MioTest(unittest.TestCase):
     def test_saldo(self):
         self.assertEqual( self.conto1.saldo, 1000 )
 
+    def test_saldon(self):
+        self.conton = Conto("ContoN" , -10)
+        self.assertEqual( self.conton.saldo, 0)
 
 
 
