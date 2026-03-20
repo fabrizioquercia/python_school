@@ -61,3 +61,9 @@ class Pila:
 
 paziente1=Paziente("Giulio",2, datetime.now())
 print(paziente1)
+
+pila = Pila()
+pila.visualizza_pazienti()
+
+paziente2=Paziente("Marco",1, datetime.now())
+print(paziente2)
